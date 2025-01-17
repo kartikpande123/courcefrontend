@@ -48,7 +48,7 @@ const ApplicationStatusChecker = () => {
       container: {
         display: 'inline-flex',
         alignItems: 'center',
-        padding: '8px 16px',
+        padding: '22px 45px',
         borderRadius: '8px',
         boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
         color: 'white',

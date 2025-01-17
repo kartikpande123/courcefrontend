@@ -473,7 +473,7 @@ const CourseApplicationForm = ({ course }) => {
                     Submitting...
                   </>
                 ) : (
-                  'Submit Application'
+                  'Submit Application And Download Details'
                 )}
               </button>
             </div>
