@@ -1,0 +1,85 @@
+/* Navbar styles */
+.navbar-pink {
+    /* background-color: #ff69b4; */
+    background-color: #ff8fc7;
+    padding: 1.5rem 1rem;
+    color: white;
+  }
+  
+  .navbar-brand {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .logout-btn {
+    background-color: white;
+    color: #ff8fc7;
+    font-weight: bold;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .logout-btn:hover {
+    background-color: #ff85c5;
+    color: white;
+  }
+  
+  /* Dashboard Header */
+  .dashboard-header {
+    background-color: #ffe4ec;
+  }
+  
+  .header-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff69b4;
+  }
+  
+  /* Buttons Grid */
+  .dashboard-btn {
+    background-color: #ff8fc7;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  
+  .dashboard-btn:hover {
+    background-color: #ff85c5;
+    transform: translateY(-5px);
+  }
+  
+  .btn-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .btn span {
+    font-size: 1.2rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .dashboard-btn {
+      padding: 1rem;
+    }
+  
+    .btn-icon {
+      font-size: 1.8rem;
+    }
+  
+    .btn span {
+      font-size: 1rem;
+    }
+  }
+  
