@@ -1,5 +1,16 @@
 import React, { useState } from "react";
-import { FaPlusCircle, FaBook, FaRegAddressCard, FaEnvelope, FaMoneyBillWave, FaBell, FaVideo, FaUsers } from "react-icons/fa";
+import { 
+  FaPlusCircle, 
+  FaBook, 
+  FaRegAddressCard, 
+  FaEnvelope, 
+  FaMoneyBillWave, 
+  FaBell, 
+  FaVideo, 
+  FaUsers,
+  FaClipboardCheck,
+  FaChartLine
+} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import logo from '../Images/Logo.jpg';
 
@@ -7,7 +18,7 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
-  // ... (keep all your existing styles)
+  // All existing styles remain the same
   const navbarStyle = {
     backgroundColor: '#ff85c5',
     padding: '20px 0',
@@ -109,7 +120,6 @@ const AdminDashboard = () => {
     marginTop: '10px'
   };
 
-  // New Modal Styles
   const modalOverlayStyle = {
     position: 'fixed',
     top: 0,
@@ -157,6 +167,7 @@ const AdminDashboard = () => {
     border: 'none'
   };
 
+  // Updated buttons array with two new attendance-related buttons
   const buttons = [
     { icon: <FaPlusCircle />, text: "Add Category", path: "/category" },
     { icon: <FaBook />, text: "Add Course", path: "/addcource" },
@@ -165,7 +176,9 @@ const AdminDashboard = () => {
     { icon: <FaMoneyBillWave />, text: "Payments", path: "/payments" },
     { icon: <FaBell />, text: "Add Notification", path: "/adminnotification" },
     { icon: <FaVideo />, text: "G-Meet Link", path: "/admingmeet" },
-    { icon: <FaUsers />, text: "Candidates", path: "/selectedcandidates" }
+    { icon: <FaUsers />, text: "Candidates", path: "/selectedcandidates" },
+    { icon: <FaClipboardCheck />, text: "Check Attendance", path: "/attendancecheck" },
+    { icon: <FaChartLine />, text: "Attendance Tracker", path: "/attendacedisplay" }
   ];
 
   const handleLogout = () => {
@@ -173,9 +186,9 @@ const AdminDashboard = () => {
   };
 
   const confirmLogout = () => {
-    localStorage.removeItem('adminLoggedIn'); // Clear the adminLoggedIn key
-    navigate('/'); // Redirect to the home page or login page
-    setShowLogoutModal(false); // Close the modal
+    localStorage.removeItem('adminLoggedIn');
+    navigate('/');
+    setShowLogoutModal(false);
   };
 
   const handleButtonHover = (e, isHover) => {
@@ -230,7 +243,6 @@ const AdminDashboard = () => {
         </div>
       </div>
 
-      {/* Logout Confirmation Modal */}
       {showLogoutModal && (
         <div style={modalOverlayStyle}>
           <div style={modalStyle}>

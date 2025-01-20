@@ -20,6 +20,8 @@ import ApplicationStatusChecker from './components/StdStatus';
 import AdminLogin from './components/AdminLogin';
 import AboutUs from './components/AboutUs';
 import Protected from './components/Protected';
+import AttendanceManagement from './components/Adminattendace';
+import AttendanceDisplay from './components/AttendanceWatch';
 
 function App() {
   return (
@@ -46,6 +48,8 @@ function App() {
         <Route path="/appstatus" element={<ApplicationStatusChecker />} />
         <Route path="/login" element={<AdminLogin />} />
         <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/attendancecheck" element={<Protected><AttendanceManagement /></Protected>} />
+        <Route path="/attendacedisplay" element={<Protected><AttendanceDisplay /></Protected>} />
       </Routes>
     </div>
   </Router>

@@ -31,13 +31,7 @@ const AdminCourseAdd = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/categories`, {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
+      const response = await fetch(`${API_BASE_URL}/categories`);
       if (!response.ok) throw new Error('Failed to fetch categories');
       const data = await response.json();
       setCategories(data);
@@ -49,13 +43,7 @@ const AdminCourseAdd = () => {
 
   const fetchCourses = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/courses`, {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
+      const response = await fetch(`${API_BASE_URL}/courses`);
       if (!response.ok) throw new Error('Failed to fetch courses');
       const data = await response.json();
       setCourses(data);
@@ -134,10 +122,8 @@ const AdminCourseAdd = () => {
 
       const response = await fetch(url, {
         method,
-        credentials: 'include',
         headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           ...formData,
@@ -165,11 +151,7 @@ const AdminCourseAdd = () => {
     if (window.confirm('Are you sure you want to delete this course?')) {
       try {
         const response = await fetch(`${API_BASE_URL}/courses/${id}`, {
-          method: 'DELETE',
-          credentials: 'include',
-          headers: {
-            'Accept': 'application/json'
-          }
+          method: 'DELETE'
         });
 
         if (!response.ok) throw new Error('Failed to delete course');
@@ -475,7 +457,8 @@ const AdminCourseAdd = () => {
                         <small className="text-muted">
                           Fees: ₹{course.fees}
                         </small>
-                      </p></div>
+                      </p>
+                    </div>
                   </div>
                   <div>
                     <button
@@ -484,8 +467,7 @@ const AdminCourseAdd = () => {
                       style={{ 
                         ...styles.button, 
                         backgroundColor: 'white', 
-                        color: '#ff8fc7', 
-                        border: '2px solid #ff8fc7' 
+                        color: '#ff8fc7',border: '2px solid #ff8fc7' 
                       }}
                       onMouseOver={(e) => {
                         e.target.style.backgroundColor = '#ff8fc7';
