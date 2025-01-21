@@ -5,7 +5,6 @@ import {
   FaClipboard,
   FaBell,
   FaQuestionCircle,
-  FaUserCircle,
   FaUser,
   FaClock,
   FaCalendarAlt,
@@ -59,16 +58,16 @@ const UserDashboard = () => {
         const [notificationsRes, coursesRes, categoriesRes] = await Promise.all([
           axios.get(`${API_BASE_URL}/notifications`),
           axios.get(`${API_BASE_URL}/courses`),
-          axios.get(`${API_BASE_URL}/categories`)
+          axios.get(`${API_BASE_URL}/categories`),
         ]);
 
         setNotificationCount(notificationsRes.data.length || 0);
-        
+
         // Sort courses by Firestore timestamp
-        const sortedCourses = [...(coursesRes.data || [])].sort((a, b) => {
+        const sortedCourses = (coursesRes.data || []).sort((a, b) => {
           const getTimestampMs = (course) => {
             if (!course.createdAt) return 0;
-            
+
             // Handle Firestore timestamp object
             if (course.createdAt._seconds) {
               return (course.createdAt._seconds * 1000) + (course.createdAt._nanoseconds / 1000000);
@@ -78,11 +77,11 @@ const UserDashboard = () => {
 
           const timeA = getTimestampMs(a);
           const timeB = getTimestampMs(b);
-          
+
           // Debug logging
           console.log('Course:', a.title, 'Time:', new Date(timeA).toISOString());
           console.log('Course:', b.title, 'Time:', new Date(timeB).toISOString());
-          
+
           // Sort in descending order (newest first)
           return timeB - timeA;
         });
@@ -99,8 +98,7 @@ const UserDashboard = () => {
     fetchData();
   }, []);
 
-
-  const filteredCourses = courses.filter(course => {
+  const filteredCourses = (Array.isArray(courses) ? courses : []).filter(course => {
     const matchesSearch = course.title && searchTerm 
       ? course.title.toLowerCase().includes(searchTerm.toLowerCase()) 
       : false; // fallback to false if either is undefined or not a string
@@ -109,7 +107,7 @@ const UserDashboard = () => {
   
     return matchesSearch && matchesCategory;
   });
-  
+
   const toggleNavbar = () => {
     setIsNavOpen(!isNavOpen);
   };
@@ -234,18 +232,11 @@ const UserDashboard = () => {
                       </div>
                       <div className="info-item">
                         <FaRupeeSign className="info-icon" />
-                        <span>INR {course.fees}</span>
-                      </div>
-                      <div className="info-item">
-                        <FaCalendarAlt className="info-icon" />
-                        <span>Last Date to Apply: {formatDate(course.lastDateToApply)}</span>
+                        <span>Price: ₹{course.price}</span>
                       </div>
                     </div>
-                    {new Date(course.createdAt) > new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) && (
-                      <div className="new-course-badge">New</div>
-                    )}
-                    <button 
-                      className="view-details-btn"
+                    <button
+                      className="btn btn-primary mt-3"
                       onClick={() => handleViewDetails(course.id)}
                     >
                       View Details
