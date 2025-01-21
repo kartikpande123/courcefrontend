@@ -101,11 +101,15 @@ const UserDashboard = () => {
 
 
   const filteredCourses = courses.filter(course => {
-    const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = course.title && searchTerm 
+      ? course.title.toLowerCase().includes(searchTerm.toLowerCase()) 
+      : false; // fallback to false if either is undefined or not a string
+  
     const matchesCategory = selectedCategory === 'all' || course.categoryId === selectedCategory;
+  
     return matchesSearch && matchesCategory;
   });
-
+  
   const toggleNavbar = () => {
     setIsNavOpen(!isNavOpen);
   };
